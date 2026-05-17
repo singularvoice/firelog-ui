@@ -1,0 +1,27 @@
+{
+  "name": "firelog-ui",
+  "version": "0.0.1",
+  "description": "A clean, local web UI for tailing and formatting Firebase Emulator logs.",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "firelog-ui": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Amir Hassanzadeh <a.hassanzadeh.h@gmail.com>",
+  "keywords": [
+    "firebase",
+    "emulator",
+    "logs",
+    "logging",
+    "cli",
+    "viewer",
+    "cloud-functions"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@logdna/tail-file": "^3.0.1"
+  }
+}

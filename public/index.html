@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🔥 Firebase Emulator Log Explorer</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <div class="header-left">
+        <h1>🔥 Firebase Cloud Logs View</h1>
+        <div class="filter-wrapper">
+            <label for="execution-filter">Invocation instance:</label>
+            <select id="execution-filter">
+                <option value="all">All Invocations / Paths</option>
+            </select>
+        </div>
+    </div>
+    <button id="clear-btn">Clear Console</button>
+</header>
+
+<div id="log-container"></div>
+
+<button id="scroll-bottom-btn" class="fab-btn">↓ Scroll to Bottom</button>
+
+<script src="/client.js"></script>
+</body>
+</html>
