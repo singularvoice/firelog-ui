@@ -1,6 +1,6 @@
 {
   "name": "firelog-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A clean, local web UI for tailing and formatting Firebase Emulator logs.",
   "type": "module",
   "main": "index.js",

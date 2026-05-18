@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Waiting for Firelog UI</title>
+    <link rel="icon" type="image/svg+xml" href="/icon.svg">
+    <style>
+        body { font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #f8f9fa; color: #3c4043; margin: 0; }
+        .box { text-align: center; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 1px 3px rgba(60,64,67,0.3); border: 1px solid #dadce0; max-width: 500px; width: 90%; }
+        h1 { color: #1a73e8; margin-top: 0; font-size: 22px; }
+        code { background: #f1f3f4; padding: 6px 10px; border-radius: 4px; font-size: 14px; font-family: monospace; display: inline-block; margin: 15px 0; color: #d93025; }
+        .pulse { margin-top: 10px; font-weight: bold; color: #5f6368; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: .2; } 50% { opacity: 1; } 100% { opacity: .2; } }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>🔥 Firelog UI is not running</h1>
+    <p>Please start the interface in your terminal:</p>
+    <code>firebase emulators:start 2>&1 | firelog-ui</code>
+    <div class="pulse">Waiting for connection...</div>
+</div>
+
+<script>
+    setInterval(() => {
+        fetch('/').then(res => {
+            if (res.ok) window.location.reload();
+        }).catch(() => {});
+    }, 2000);
+</script>
+</body>
+</html>
