@@ -30,32 +30,28 @@ const clients = [];
 
 // Native static asset and endpoint router
 const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    const filePath = path.join(__dirname, "public", "index.html");
+  // Helper to serve static files cleanly
+  const serveStatic = (fileName, contentType) => {
+    const filePath = path.join(__dirname, "public", fileName);
     fs.readFile(filePath, (err, data) => {
-      if (err) { console.error(`❌ File read failed at: ${filePath}`, err.message); res.writeHead(500); res.end("Error loading index.html"); }
-      else { res.writeHead(200, { "Content-Type": "text/html" }); res.end(data); }
+      if (err) {
+        console.error(`❌ File read failed at: ${filePath}`, err.message);
+        res.writeHead(500);
+        res.end(`Error loading ${fileName}`);
+      } else {
+        res.writeHead(200, { "Content-Type": contentType });
+        res.end(data);
+      }
     });
-    return;
-  }
+  };
 
-  if (req.url === "/style.css") {
-    const filePath = path.join(__dirname, "public", "style.css");
-    fs.readFile(filePath, (err, data) => {
-      if (err) { console.error(`❌ File read failed at: ${filePath}`, err.message); res.writeHead(500); res.end("Error loading style.css"); }
-      else { res.writeHead(200, { "Content-Type": "text/css" }); res.end(data); }
-    });
-    return;
-  }
-
-  if (req.url === "/client.js") {
-    const filePath = path.join(__dirname, "public", "client.js");
-    fs.readFile(filePath, (err, data) => {
-      if (err) { console.error(`❌ File read failed at: ${filePath}`, err.message); res.writeHead(500); res.end("Error loading client.js"); }
-      else { res.writeHead(200, { "Content-Type": "application/javascript" }); res.end(data); }
-    });
-    return;
-  }
+  if (req.url === "/") return serveStatic("index.html", "text/html");
+  if (req.url === "/style.css") return serveStatic("style.css", "text/css");
+  if (req.url === "/client.js") return serveStatic("client.js", "application/javascript");
+  if (req.url === "/manifest.json") return serveStatic("manifest.json", "application/json");
+  if (req.url === "/sw.js") return serveStatic("sw.js", "application/javascript");
+  if (req.url === "/offline.html") return serveStatic("offline.html", "text/html");
+  if (req.url === "/icon.svg") return serveStatic("icon.svg", "image/svg+xml");
 
   if (req.url === "/stream") {
     res.writeHead(200, {
